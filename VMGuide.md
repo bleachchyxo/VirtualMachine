@@ -38,4 +38,8 @@ When I first ran the command I got an error:
     error: failed to connect to the hypervisor
     error: Cannot recv data: Connection reset by peer
     
-Truns out I just need to run the  command as root.
+Truns out I just need to run the  command as root or can use one of these two commands, both are basically the same:
+
+    /etc/init.d/libvirtd status
+or
+    rc-service libvirtd status
