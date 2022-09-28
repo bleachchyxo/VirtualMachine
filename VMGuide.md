@@ -42,4 +42,9 @@ Truns out I just need to run the  command as root or can use one of these two co
 
     /etc/init.d/libvirtd status
 or
+
     rc-service libvirtd status
+
+and you should get and output like this:
+
+    [ ok ] Checking status of libvirt management daemon: libvirtd running.
