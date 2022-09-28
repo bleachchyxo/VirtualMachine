@@ -48,3 +48,9 @@ or
 and you should get and output like this:
 
     [ ok ] Checking status of libvirt management daemon: libvirtd running.
+
+## Creating a Virtual Machine
+
+    sudo apt install virt-manager
+
+# Virt Manager
