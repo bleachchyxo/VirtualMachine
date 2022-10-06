@@ -100,3 +100,33 @@ By entering the commnad `ifconfig -a` or `ip -a` you can see that two new networ
 The first one is `virbr0` also known as the `virtual bridge interface` and it works as a virtual switch running inside of the host, can provide internet access by NAT mode and it also provide DHCP.
 
 The second one is `virbr0-nic`, I don't really know what it is but right now isn't that relevant.
+
+        $ sudo virsh list
+        
+Currently I'm not running any virtual machine as you can see in the ouptut:
+
+         Id   Name   State
+        --------------------
+         
+
+In order to list all our existing virtual machines you need to enter the following command:
+
+        $ sudo virsh list --all
+        
+As you can see I only have one machine created named `pc1`
+        
+         Id   Name   State
+        -----------------------
+         -    pc1    shut off
+
+In order to check if your machine is using the `defaut network` you can enter this command:
+
+        $  sudo virsh dumpxml <name> | grep -i 'network='
+        
+in my case:
+
+        $ sudo virsh dumpxml pc1 | grep -i 'network='
+        
+and you can see how it actually uses the `default` network
+
+              <source network='default'/>
