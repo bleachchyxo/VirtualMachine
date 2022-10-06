@@ -123,10 +123,20 @@ In order to check if your machine is using the `defaut network` you can enter th
 
         $  sudo virsh dumpxml <name> | grep -i 'network='
         
-in my case:
+In my case:
 
         $ sudo virsh dumpxml pc1 | grep -i 'network='
         
-and you can see how it actually uses the `default` network
+You can see how it actually uses the `default` network
 
               <source network='default'/>
+
+Now we are going to start our machine:
+
+        $ sudo virsh start pc1
+        
+We can see that by entering again the command `sudo virsh list` our machine will appear running
+
+         Id   Name   State
+        ----------------------
+         1    pc1    running
