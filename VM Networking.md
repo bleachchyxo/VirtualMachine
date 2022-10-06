@@ -203,3 +203,5 @@ It only appears `vnet0` because our machine still up so to get rid of that netwo
 In my case
 
         $ sudo virsh shutdown pc1
+        
+        $ doas ip link delete name br0
