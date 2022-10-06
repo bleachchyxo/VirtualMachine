@@ -140,3 +140,15 @@ We can see that by entering again the command `sudo virsh list` our machine will
          Id   Name   State
         ----------------------
          1    pc1    running
+         
+Once our machine is running we can proceed to enter the `ifconfig -a` or `ip -a` commnad again and we will see a new interface created
+
+        vnet0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+                inet6 fe80::fc54:ff:fed1:770  prefixlen 64  scopeid 0x20<link>
+                ether fe:54:00:d1:07:70  txqueuelen 1000  (Ethernet)
+                RX packets 70  bytes 9550 (9.3 KiB)
+                RX errors 0  dropped 0  overruns 0  frame 0
+                TX packets 325  bytes 20473 (19.9 KiB)
+                TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+                
+The `vnet` interfaces are also called `tap` interfaces, and they're attached to the process running `qemu-kvm` emulator.
