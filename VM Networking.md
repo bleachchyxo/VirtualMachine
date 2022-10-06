@@ -141,7 +141,7 @@ We can see that by entering again the command `sudo virsh list` our machine will
         ----------------------
          1    pc1    running
          
-Once our machine is running we can proceed to enter the `ifconfig -a` or `ip -a` commnad again and we will see a new interface created
+Once our machine is running we can proceed to enter the `ifconfig -a` or `ip addr` commnad again and we will see a new interface created
 
         vnet0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
                 inet6 fe80::fc54:ff:fed1:770  prefixlen 64  scopeid 0x20<link>
@@ -151,4 +151,19 @@ Once our machine is running we can proceed to enter the `ifconfig -a` or `ip -a`
                 TX packets 325  bytes 20473 (19.9 KiB)
                 TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
                 
-The `vnet` interfaces are also called `tap` interfaces, and they're attached to the process running `qemu-kvm` emulator.
+The `vnet` interfaces are also called `tap` interfaces, and they're attached to the process running `qemu-kvm` emulator. If you used the `ip addr` command you can also see the the `vnet0` its attached to the virtual bridge or `virbr0`
+
+        6: vnet0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master virbr0 state UNKNOWN group default qlen 1000
+            link/ether fe:54:00:d1:07:70 brd ff:ff:ff:ff:ff:ff
+            inet6 fe80::fc54:ff:fed1:770/64 scope link
+            valid_lft forever preferred_lft forever
+            
+You can also run this command to see extra information about the running machine
+
+        $ sudo virsh net-dhcp-leases default
+        
+And it should output something like this:
+
+         Expiry Time           MAC address         Protocol   IP address          Hostname   Client ID or DUID
+        -----------------------------------------------------------------------------------------------------------------------------------------------
+         2022-10-06 14:19:55   52:54:00:d1:07:70   ipv4       192.168.122.16/24   pc1        ff:00:d1:07:70:00:01:00:01:2a:c8:c5:15:52:54:00:d1:07:70
