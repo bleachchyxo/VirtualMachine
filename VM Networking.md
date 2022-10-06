@@ -44,7 +44,7 @@ This is the command output in my machine:
 
 As you can see there is no networks setup by default. In order to change that we need to start our default network
 
-    $ doas virsh net-start default
+    $ sudo virsh net-start default
 
 And now we can check again the networks using the `sudo virsh net-list` command and the output should look like this:
 
@@ -167,3 +167,39 @@ And it should output something like this:
          Expiry Time           MAC address         Protocol   IP address          Hostname   Client ID or DUID
         -----------------------------------------------------------------------------------------------------------------------------------------------
          2022-10-06 14:19:55   52:54:00:d1:07:70   ipv4       192.168.122.16/24   pc1        ff:00:d1:07:70:00:01:00:01:2a:c8:c5:15:52:54:00:d1:07:70
+
+
+## Setting up a bridge
+
+First of all we must bring down the default network
+
+        $ sudo virsh net-destroy default
+        
+You can say it's down because it not longer shows up when you type `ifconfig -a` or `ip addr`
+
+        1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+            link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+            inet 127.0.0.1/8 scope host lo
+            valid_lft forever preferred_lft forever
+            inet6 ::1/128 scope host
+            valid_lft forever preferred_lft forever
+        2: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
+            link/ether 00:21:cc:b5:74:ee brd ff:ff:ff:ff:ff:ff
+        3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+            link/ether 10:0b:a9:84:f3:7c brd ff:ff:ff:ff:ff:ff
+            inet 192.168.0.103/24 brd 192.168.0.255 scope global dynamic wlan0
+            valid_lft 6360sec preferred_lft 6360sec
+            inet6 fe80::120b:a9ff:fe84:f37c/64 scope link
+            valid_lft forever preferred_lft forever
+        6: vnet0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 1000
+            link/ether fe:54:00:d1:07:70 brd ff:ff:ff:ff:ff:ff
+            inet6 fe80::fc54:ff:fed1:770/64 scope link
+            valid_lft forever preferred_lft forever
+
+It only appears `vnet0` because our machine still up so to get rid of that network interface we also going to shut down our machine
+
+        $ sudo virsh shutdown <name>
+        
+In my case
+
+        $ sudo virsh shutdown pc1
