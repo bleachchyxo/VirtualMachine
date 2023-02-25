@@ -20,7 +20,7 @@ and install the KVM essentials:
     
 Replace `username` for your actual username
     
-    sudo adduser username] kvm
+    sudo adduser username kvm
     
 Replace `username` for your actual username
 
