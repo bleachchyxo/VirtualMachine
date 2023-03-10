@@ -1,4 +1,4 @@
-# Virtual Machine Guide Setup
+# Virtual Machine Debian Guide Setup
 
 ## Check for virtualization support on your machine
   
