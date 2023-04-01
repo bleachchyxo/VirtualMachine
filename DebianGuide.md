@@ -16,13 +16,11 @@ and install the KVM essentials:
 
 ## Authorize users
     
-    sudo adduser username libvirt
+    sudo adduser $USER libvirt
     
 Replace `username` for your actual username
     
-    sudo adduser username kvm
-    
-Replace `username` for your actual username
+    sudo adduser $USER kvm
 
 In case having trouble with the `adduser` command use:
 
