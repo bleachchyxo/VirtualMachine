@@ -9,4 +9,15 @@ Manufacturers sometimes disable the feature by default settings. To make sure, b
 
     sudo pacman -S virt-manager qemu libvirt dnsmasq
 
+Once we installed the packages we are going to list the services we need to start
 
+    ls /etc/runit/sv | grep virt
+
+    sudo ln -s /etc/runit/sv/libvirtd/ /run/runit/service
+    sudo ln -s /etc/runit/sv/virtlockd/ /run/runit/service
+    sudo ln -s /etc/runit/sv/virtlogd/ /run/runit/service
+
+    sudo sv restart libvirtd
+    sudo sv restart virtlockd
+    sudo sv restart virtlogd
+    
