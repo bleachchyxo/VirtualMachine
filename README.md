@@ -7,4 +7,6 @@ Manufacturers sometimes disable the feature by default settings. To make sure, b
 
 ## Installing KVM
 
-    sudo pacman -S virt-manager qemu libvirt
+    sudo pacman -S virt-manager qemu libvirt dnsmasq
+
+
