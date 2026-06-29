@@ -397,7 +397,22 @@ after type `startx` the enviroment appears so i run the following commands
     sudo ln -s /etc/runit/sv/virtlockd /etc/runit/runsvdir/default
     sudo ln -s /etc/runit/sv/virtlogd /etc/runit/runsvdir/default
 
-then reboot again. once again on the system i download the windows 10 iso. i wanna create a virtual machine on kvm hosting a windows 10 system
-but using my 3080 nvidia gpu while u run the artix linux image with the IGPU from the cpu. its already enabled from the BIOS now i just need to somehow
+then reboot again. once again on the system i download the windows 10 iso. i wanna create a virtual machine on kvm hosting a windows 10 system so i run
 
     sudo virsh net-start default
+    
+and assing `/dev/sda` for the vm;
+
+    lsblk
+    NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+    sda           8:0    0 465.8G  0 disk
+    ├─sda1        8:1    0    50M  0 part
+    ├─sda2        8:2    0 465.2G  0 part
+    └─sda3        8:3    0   522M  0 part
+    nvme0n1     259:0    0 238.5G  0 disk
+    ├─nvme0n1p1 259:1    0     1G  0 part /boot
+    ├─nvme0n1p2 259:2    0    30G  0 part /
+    └─nvme0n1p3 259:3    0 207.5G  0 part /home
+
+once we created the vm i check for updates and make it up to date. but now this is where im stuck. on device manager the windows 10 shows "micorosft basic display adaptor" on `display adapters` and i want to take my 3080 nvidia gpu while the host (artix) runs using IGPU which i enabled it previiously on the BIOS.
+be careful last time i had to reinstall my whole OS since i got with no display/blackscreen. also i have a pair of physical speakers idk if i need to do the passthrough also so i listen the vm and then switch them back to the host after finishing using the vm. or is there a way to make the vm produce sounds and hear them through the host as a video frokm yotubue idk. idk how to do idk what to do and idk whats the best efficient and clean weay to do it
