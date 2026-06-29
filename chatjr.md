@@ -416,3 +416,26 @@ and assing `/dev/sda` for the vm;
 
 once we created the vm i check for updates and make it up to date. but now this is where im stuck. on device manager the windows 10 shows "micorosft basic display adaptor" on `display adapters` and i want to take my 3080 nvidia gpu while the host (artix) runs using IGPU which i enabled it previiously on the BIOS.
 be careful last time i had to reinstall my whole OS since i got with no display/blackscreen. also i have a pair of physical speakers idk if i need to do the passthrough also so i listen the vm and then switch them back to the host after finishing using the vm. or is there a way to make the vm produce sounds and hear them through the host as a video frokm yotubue idk. idk how to do idk what to do and idk whats the best efficient and clean weay to do it
+
+     lspci
+    00:00.0 Host bridge: Intel Corporation Comet Lake-S 6c Host Bridge/DRAM Controller (rev 03)
+    00:01.0 PCI bridge: Intel Corporation 6th-10th Gen Core Processor PCIe Controller (x16) (rev 03)
+    00:02.0 VGA compatible controller: Intel Corporation CometLake-S GT2 [UHD Graphics 630] (rev 03)
+    00:14.0 USB controller: Intel Corporation 400 Series Chipset Family USB 3.2 Gen 2x1 (10 Gbs) xHCI Host Controller
+    00:14.2 RAM memory: Intel Corporation 400 Series Chipset Family Shared SRAM
+    00:15.0 Serial bus controller: Intel Corporation 400 Series Chipset Family I2C #0
+    00:15.1 Serial bus controller: Intel Corporation 400 Series Chipset Family I2C #1
+    00:16.0 Communication controller: Intel Corporation 400 Series Chipset Family HECI #1
+    00:17.0 SATA controller: Intel Corporation 400 Series Chipset Family SATA Controller (AHCI) (Desktop)
+    00:1b.0 PCI bridge: Intel Corporation 400 Series Chipset Family PCIe Root Port #17 (rev f0)
+    00:1c.0 PCI bridge: Intel Corporation 400 Series Chipset Family PCIe Root Port #1 (rev f0)
+    00:1c.4 PCI bridge: Intel Corporation 400 Series Chipset Family PCIe Root Port #5 (rev f0)
+    00:1d.0 PCI bridge: Intel Corporation 400 Series Chipset Family PCIe Root Port #9 (rev f0)
+    00:1f.0 ISA bridge: Intel Corporation Z490 Chipset LPC/eSPI Controller
+    00:1f.3 Audio device: Intel Corporation 400 Series Chipset Family HD Audio
+    00:1f.4 SMBus: Intel Corporation 400 Series Chipset Platform SMBus
+    00:1f.5 Serial bus controller: Intel Corporation 400 Series Chipset Family SPI (flash) Controller
+    01:00.0 VGA compatible controller: NVIDIA Corporation GA102 [GeForce RTX 3080] (rev a1)
+    01:00.1 Audio device: NVIDIA Corporation GA102 High Definition Audio Controller (rev a1)
+    02:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller SM981/PM981/PM983
+    04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 15)
