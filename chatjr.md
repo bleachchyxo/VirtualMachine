@@ -449,3 +449,17 @@ also made sure these remain enabled:
     -Primary Display = IGPU
 
 The monitor  plugged into the motherboard HDMI not the RTX 3080.
+
+edited `/etc/default/grub` and changed;
+
+    GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
+
+to 
+
+    GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet intel_iommu=on"
+
+updated the grub
+
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+and rebooted
