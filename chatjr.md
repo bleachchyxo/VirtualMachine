@@ -624,7 +624,9 @@ so i create `/etc/modprobe.d/vfio.conf` and on it i write;
 
 also edited `/etc/mkinitcpio.conf`
 
-added `vfio vfio_pci vfio_iommu_type1` inside the `()` of `Modules()` then ran.(
+added `vfio vfio_pci vfio_iommu_type1` inside the `()` of `Modules()` then ran and add replace `HOOKS()` for this;
+
+    HOOKS=(base udev autodetect microcode modconf keyboard keymap block filesystems fsck)
 
     sudo mkinitcpio -P
 
