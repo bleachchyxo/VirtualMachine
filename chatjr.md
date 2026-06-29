@@ -399,3 +399,5 @@ after type `startx` the enviroment appears so i run the following commands
 
 then reboot again. once again on the system i download the windows 10 iso. i wanna create a virtual machine on kvm hosting a windows 10 system
 but using my 3080 nvidia gpu while u run the artix linux image with the IGPU from the cpu. its already enabled from the BIOS now i just need to somehow
+
+    sudo virsh net-start default
