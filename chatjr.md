@@ -387,3 +387,15 @@ an OS installed but no UI just terminal. thats why we run a script from the repo
     chown -R "$SUDO_USER:$SUDO_USER" "$USER_DIR/.xinitrc"
     
     message green "Enviroment succesfully installed. Reboot or type startx."
+
+after type `startx` the enviroment appears so i run the following commands
+
+    sudo pacman -S nvidia-open-dkms linux-headers dkms base-devel
+    qemu libvirt libvirt-runit dnsmasq virt-manager
+    sudo usermod -aG libvirt,kvm $USER
+    sudo ln -s /etc/runit/sv/libvirtd /etc/runit/runsvdir/default
+    sudo ln -s /etc/runit/sv/virtlockd /etc/runit/runsvdir/default
+    sudo ln -s /etc/runit/sv/virtlogd /etc/runit/runsvdir/default
+
+then reboot again. once again on the system i download the windows 10 iso. i wanna create a virtual machine on kvm hosting a windows 10 system
+but using my 3080 nvidia gpu while u run the artix linux image with the IGPU from the cpu. its already enabled from the BIOS now i just need to somehow
