@@ -508,4 +508,107 @@ after the reboot i checked;
     /sys/kernel/iommu_groups/0/devices/0000:00:02.0
     /sys/kernel/iommu_groups/9/devices/0000:00:1c.4
 
+    lspci -k
+    00:00.0 Host bridge: Intel Corporation Comet Lake-S 6c Host Bridge/DRAM Controller (rev 03)
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: skl_uncore
+    00:01.0 PCI bridge: Intel Corporation 6th-10th Gen Core Processor PCIe Controller (x16) (rev 03)
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: pcieport
+            Kernel modules: shpchp
+    00:02.0 VGA compatible controller: Intel Corporation CometLake-S GT2 [UHD Graphics 630] (rev 03)
+            DeviceName: Onboard - Video
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: i915
+            Kernel modules: i915
+    00:14.0 USB controller: Intel Corporation 400 Series Chipset Family USB 3.2 Gen 2x1 (10 Gbs) xHCI Host Controller
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: xhci_hcd
+            Kernel modules: xhci_pci
+    00:14.2 RAM memory: Intel Corporation 400 Series Chipset Family Shared SRAM
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+    00:15.0 Serial bus controller: Intel Corporation 400 Series Chipset Family I2C #0
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: intel-lpss
+            Kernel modules: intel_lpss_pci
+    00:15.1 Serial bus controller: Intel Corporation 400 Series Chipset Family I2C #1
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: intel-lpss
+            Kernel modules: intel_lpss_pci
+    00:16.0 Communication controller: Intel Corporation 400 Series Chipset Family HECI #1
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: mei_me
+            Kernel modules: mei_me
+    00:17.0 SATA controller: Intel Corporation 400 Series Chipset Family SATA Controller (AHCI) (Desktop)
+            DeviceName: Onboard - SATA
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: ahci
+            Kernel modules: ahci
+    00:1b.0 PCI bridge: Intel Corporation 400 Series Chipset Family PCIe Root Port #17 (rev f0)
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: pcieport
+            Kernel modules: shpchp
+    00:1c.0 PCI bridge: Intel Corporation 400 Series Chipset Family PCIe Root Port #1 (rev f0)
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: pcieport
+            Kernel modules: shpchp
+    00:1c.4 PCI bridge: Intel Corporation 400 Series Chipset Family PCIe Root Port #5 (rev f0)
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: pcieport
+            Kernel modules: shpchp
+    00:1d.0 PCI bridge: Intel Corporation 400 Series Chipset Family PCIe Root Port #9 (rev f0)
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: pcieport
+            Kernel modules: shpchp
+    00:1f.0 ISA bridge: Intel Corporation Z490 Chipset LPC/eSPI Controller
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+    00:1f.3 Audio device: Intel Corporation 400 Series Chipset Family HD Audio
+            DeviceName: Onboard - Sound
+            Subsystem: ASUSTeK Computer Inc. Device 87e3
+            Kernel driver in use: snd_hda_intel
+            Kernel modules: snd_soc_avs, snd_sof_pci_intel_cnl, snd_hda_intel
+    00:1f.4 SMBus: Intel Corporation 400 Series Chipset Platform SMBus
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: i801_smbus
+            Kernel modules: i2c_i801
+    00:1f.5 Serial bus controller: Intel Corporation 400 Series Chipset Family SPI (flash) Controller
+            DeviceName: Onboard - Other
+            Subsystem: ASUSTeK Computer Inc. Device 8694
+            Kernel driver in use: intel-spi
+            Kernel modules: spi_intel_pci
+    01:00.0 VGA compatible controller: NVIDIA Corporation GA102 [GeForce RTX 3080] (rev a1)
+            Kernel driver in use: nvidia
+            Kernel modules: nouveau, nvidia_drm, nvidia
+    01:00.1 Audio device: NVIDIA Corporation GA102 High Definition Audio Controller (rev a1)
+            Kernel driver in use: snd_hda_intel
+            Kernel modules: snd_hda_intel
+    02:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller SM981/PM981/PM983
+            Subsystem: Samsung Electronics Co Ltd SSD 970 EVO/PRO
+            Kernel driver in use: nvme
+            Kernel modules: nvme
+    04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 15)
+            Subsystem: ASUSTeK Computer Inc. Onboard RTL8111H Ethernet
+            Kernel driver in use: r8169
+            Kernel modules: r8169
 
+so i changed;
+
+    GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet intel_iommu=on"
+
+to 
+
+    GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet intel_iommu=on modprobe.blacklist=nvidia,nouveau,nvidia_drm,nvidia_uvm,nvidia_modeset"
+
+and ofc;
+
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+and reboot
