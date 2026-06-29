@@ -642,4 +642,16 @@ and
 
     sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-reboot
+reboot, then 
+
+    sudo nvim /etc/modprobe.d/vfio.conf
+
+and add this content;
+
+    options vfio-pci ids=10de:2206,10de:1aef
+
+then rebuild 
+
+    sudo mkinitcpio -P
+
+and reboot
