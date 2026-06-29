@@ -462,4 +462,50 @@ updated the grub
 
     sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-and rebooted
+after the reboot i checked;
+
+    sudo dmesg | grep -e DMAR -e IOMMU
+    [    0.009805] ACPI: DMAR 0x000000007924F000 0000A8 (v01 INTEL  EDK2     00000002      01000013)
+    [    0.009829] ACPI: Reserving DMAR table memory at [mem 0x7924f000-0x7924f0a7]
+    [    0.055315] DMAR: IOMMU enabled
+    [    0.140616] DMAR: Host address width 39
+    [    0.140617] DMAR: DRHD base: 0x000000fed90000 flags: 0x0
+    [    0.140623] DMAR: dmar0: reg_base_addr fed90000 ver 1:0 cap 1c0000c40660462 ecap 19e2ff0505e
+    [    0.140625] DMAR: DRHD base: 0x000000fed91000 flags: 0x1
+    [    0.140629] DMAR: dmar1: reg_base_addr fed91000 ver 1:0 cap d2008c40660462 ecap f050da
+    [    0.140630] DMAR: RMRR base: 0x00000079843000 end: 0x00000079a8cfff
+    [    0.140633] DMAR: RMRR base: 0x0000007b000000 end: 0x0000007f7fffff
+    [    0.140635] DMAR-IR: IOAPIC id 2 under DRHD base  0xfed91000 IOMMU 1
+    [    0.140636] DMAR-IR: HPET id 0 under DRHD base 0xfed91000
+    [    0.140637] DMAR-IR: Queued invalidation will be enabled to support x2apic and Intr-remapping.
+    [    0.142543] DMAR-IR: Enabled IRQ remapping in x2apic mode
+    [    0.439210] DMAR: No ATSR found
+    [    0.439211] DMAR: No SATC found
+    [    0.439212] DMAR: dmar0: Using Queued invalidation
+    [    0.439215] DMAR: dmar1: Using Queued invalidation
+    [    0.441238] DMAR: Intel(R) Virtualization Technology for Directed I/O
+    
+    find /sys/kernel/iommu_groups/ -type l
+    /sys/kernel/iommu_groups/7/devices/0000:00:1b.0
+    /sys/kernel/iommu_groups/5/devices/0000:00:16.0
+    /sys/kernel/iommu_groups/13/devices/0000:04:00.0
+    /sys/kernel/iommu_groups/3/devices/0000:00:14.2
+    /sys/kernel/iommu_groups/3/devices/0000:00:14.0
+    /sys/kernel/iommu_groups/11/devices/0000:00:1f.0
+    /sys/kernel/iommu_groups/11/devices/0000:00:1f.5
+    /sys/kernel/iommu_groups/11/devices/0000:00:1f.3
+    /sys/kernel/iommu_groups/11/devices/0000:00:1f.4
+    /sys/kernel/iommu_groups/1/devices/0000:00:00.0
+    /sys/kernel/iommu_groups/8/devices/0000:00:1c.0
+    /sys/kernel/iommu_groups/6/devices/0000:00:17.0
+    /sys/kernel/iommu_groups/4/devices/0000:00:15.1
+    /sys/kernel/iommu_groups/4/devices/0000:00:15.0
+    /sys/kernel/iommu_groups/12/devices/0000:02:00.0
+    /sys/kernel/iommu_groups/2/devices/0000:00:01.0
+    /sys/kernel/iommu_groups/2/devices/0000:01:00.0
+    /sys/kernel/iommu_groups/2/devices/0000:01:00.1
+    /sys/kernel/iommu_groups/10/devices/0000:00:1d.0
+    /sys/kernel/iommu_groups/0/devices/0000:00:02.0
+    /sys/kernel/iommu_groups/9/devices/0000:00:1c.4
+
+
