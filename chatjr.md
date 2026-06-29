@@ -657,3 +657,6 @@ then rebuild
 and reboot
 
 on `virt-manager` i went to win10 → Add Hardware → PCI Host Device and added the hardware `01:00.0 NVIDIA RTX 3080` and `01:00.1 NVIDIA Audio`
+
+    sudo pacman -S pulseaudio
+    pulseaudio --start
