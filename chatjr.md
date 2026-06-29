@@ -624,7 +624,7 @@ so i create `/etc/modprobe.d/vfio.conf` and on it i write;
 
 also edited `/etc/mkinitcpio.conf`
 
-added `vfio vfio_pci vfio_iommu_type1 vfio_virqfd` inside the `()` of `Modules()` then ran
+added `vfio vfio_pci vfio_iommu_type1` inside the `()` of `Modules()` then ran.(
 
     sudo mkinitcpio -P
 
