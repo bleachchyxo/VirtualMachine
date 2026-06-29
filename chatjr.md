@@ -439,3 +439,13 @@ be careful last time i had to reinstall my whole OS since i got with no display/
     01:00.1 Audio device: NVIDIA Corporation GA102 High Definition Audio Controller (rev a1)
     02:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller SM981/PM981/PM983
     04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 15)
+
+also made sure these remain enabled:
+
+    -Intel VT-x
+    -Intel VT-d
+    -Above 4G Decoding (if available)
+    -Integrated Graphics = Enabled
+    -Primary Display = IGPU
+
+The monitor  plugged into the motherboard HDMI not the RTX 3080.
