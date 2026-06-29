@@ -611,4 +611,33 @@ and ofc;
 
     sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-and reboot
+and reboot. then i run;
+
+    lspci -nn | grep -E "NVIDIA|Audio"
+    00:1f.3 Audio device [0403]: Intel Corporation 400 Series Chipset Family HD Audio [8086:06c8]
+    01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA102 [GeForce RTX 3080] [10de:2206] (rev a1)
+    01:00.1 Audio device [0403]: NVIDIA Corporation GA102 High Definition Audio Controller [10de:1aef] (rev a1)
+
+so i create `/etc/modprobe.d/vfio.conf` and on it i write;
+
+    options vfio-pci ids=10de:2206,10de:1aef
+
+also edited `/etc/mkinitcpio.conf`
+
+added `vfio vfio_pci vfio_iommu_type1 vfio_virqfd` inside the `()` of `Modules()` then ran
+
+    sudo mkinitcpio -P
+
+and fixed `/etc/default/grub` from;
+
+    GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet intel_iommu=on modprobe.blacklist=nvidia,nouveau,nvidia_drm,nvidia_uvm,nvidia_modeset"
+
+to 
+
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 intel_iommu=on iommu=pt"
+
+and
+
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+reboot
